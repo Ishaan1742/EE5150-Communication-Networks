@@ -1,0 +1,99 @@
+\documentclass[a4paper,11pt]{scrarticle}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{thmtools}
+\usepackage{libertine}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[libertine]{newtxmath}
+\usepackage[T1]{fontenc}
+\useosf
+\usepackage{marginnote}
+\renewcommand{\marginfont}{\tiny\textit}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{xfrac}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{xr-hyper} %for using references to lemmas/theorems from other documents.
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=MidnightBlue,
+	citecolor=Aquamarine}
+
+\usepackage{scribe}
+\usepackage{tikz}
+
+
+%uncomment the line below if you want references from week1.tex
+%\externaldocument{week1} 
+
+%%%% You can give your definitions here
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\zeroes}{zeroes}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\Det}{det}
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\makeheader{Ishaan Agarwal}                           % scribe's name
+           {Jan 25, 2023}                    		% lecture date
+           {3}                                      % lecture number
+           {About The Internet}							% lecture title
+
+\noindent
+In the last lecture, we were discussing the mathematical formulation of packet switching and the statistical condition. In this lecture, we shall study a little bit about the working of something we use on a daily basis, the Internet.\\This lecture review contains content discussed in the class and additional information I gathered by reading the reference book and from the "Internet".\\ In the internet, resource sharing happens across multiple packets since many people across the world are using the internet at the same time. The Link Layer or the data link layer establishes and terminates a connection between two physically-connected nodes on a network. It breaks up packets into frames and sends them from source to destination. This layer is composed of two parts—Logical Link Control (LLC), which identifies network protocols, performs error checking and synchronizes frames, and Media Access Control (MAC) which uses MAC addresses to connect devices and define permissions to transmit and receive data, about which we will study later in the course.\\We define something called a server, which is a computer program or device that provides a service to another computer program and its user, also known as the client. Every machine on the internet is either a server or a client. The machines that provide services to other machines are servers. And the machines that are used to connect to those services are clients. A simplified diagram of how they interact might look like this:
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.2]{fig1.png}
+     \caption{Simplified Client-Server Interaction}
+\end{figure}
+
+
+\section{Web Addresses and IP Addresses}
+A web address, also known as a URL (Uniform Resource Locator), is a human-readable text that serves as a unique identifier for resources on the internet. It specifies the location of a specific webpage or resource on the World Wide Web. Web addresses typically start with "http://" or "https://" and are followed by a domain name, such as "example.com," and additional path or query parameters.
+
+An IP address, short for Internet Protocol address, is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. It serves as a unique identifier for devices, allowing them to send and receive data over the internet. IP addresses can be either IPv4 (e.g., 192.0.2.1) or IPv6 (e.g., 2001:db8:0:1234:0:567:8:1).
+
+Web addresses and IP addresses work together to enable communication over the internet. When you enter a web address in your browser, the domain name is translated into an IP address through a process called DNS (Domain Name System) resolution. The browser then uses the IP address to establish a connection with the server hosting the requested web page or resource, allowing you to access it. IP addresses are essential for routing data packets between devices on the internet, while web addresses provide a more user-friendly way to navigate and access specific content online.
+
+
+\section{Webpage}
+A web page is a specific document or resource that is part of a website. It is a file written in HTML (Hypertext Markup Language) or another web programming language and is designed to be viewed in a web browser. Web pages can contain various elements, such as text, images, videos, links, forms, and interactive features.
+
+When you visit a website, you typically interact with multiple web pages. Each web page has a unique web address (URL) that distinguishes it from other pages within the same website or from other websites. Web pages are interconnected through hyperlinks, allowing users to navigate between different pages and access the content they desire.
+
+Web pages are the building blocks of the World Wide Web, and they enable the presentation and delivery of information, services, and multimedia content over the internet. They can range from simple static pages with fixed content to dynamic pages that are generated dynamically based on user input.
+
+
+
+\section{Simple Mail Transfer Protocol}
+SMTP is a protocol used for sending and receiving email over the internet. It is responsible for the transmission of email messages between mail servers.
+
+SMTP works on a client-server model, where an email client (such as Outlook or Gmail) acts as the client, and the email server acts as the server. When you compose and send an email, your email client establishes a connection with your outgoing mail server using SMTP.
+
+The email client then sends the email to the outgoing mail server using SMTP commands. These commands include specifying the sender and recipient email addresses, the subject of the email, and the body of the message. The server validates the sender's credentials and relays the email to the recipient's mail server.
+
+In summary, SMTP is a fundamental protocol for sending email across different mail servers. It enables the reliable transfer of email messages from the sender's mail server to the recipient's mail server, ensuring efficient email communication.
+
+
+\section{Application Layer and Transport Layer}
+The application layer is the topmost layer in the TCP/IP model. It provides protocols and services that directly interact with end-user applications, facilitating tasks such as email, file transfer, web browsing, remote access, and more. This layer includes protocols like HTTP, DNS etc. The application layer protocols use the services of the lower layers (transport, network, and physical) to transport the data to the intended recipient. They rely on the transport layer for reliable data transfer, flow control, and error detection.\\\\
+The transport layer is responsible for the reliable and efficient transfer of data between hosts. It receives data from the application layer and breaks it down into smaller units. The transport layer protocols, such as TCP and UDP, add necessary information to these segments, including source and destination port numbers.
+TCP (Transmission Control Protocol) is a connection-oriented protocol that provides reliable, ordered, and error-checked delivery of data. It establishes a virtual connection between the sender and receiver, handles flow control and congestion control, and ensures the data is received accurately and in the correct order. We will study TCP in detail in the upcoming lectures.
+
+
+
+
+\end{document}
+

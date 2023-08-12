@@ -1,0 +1,106 @@
+\documentclass[a4paper,11pt]{scrarticle}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{thmtools}
+\usepackage{libertine}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[libertine]{newtxmath}
+\usepackage[T1]{fontenc}
+\useosf
+\usepackage{marginnote}
+\renewcommand{\marginfont}{\tiny\textit}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{xfrac}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{xr-hyper} %for using references to lemmas/theorems from other documents.
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=MidnightBlue,
+	citecolor=Aquamarine}
+
+\usepackage{scribe}
+\usepackage{tikz}
+
+
+%uncomment the line below if you want references from week1.tex
+%\externaldocument{week1} 
+
+%%%% You can give your definitions here
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\zeroes}{zeroes}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\Det}{det}
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\makeheader{Ishaan Agarwal}                           % scribe's name
+           {Mar 15, 2023}                    		% lecture date
+           {12}                                      % lecture number
+           {Markov Chains}							% lecture title
+
+\noindent
+In the last lecture, we learnt about the basics of Markov Chains and the transition matrix. In this lecture, we shall look at a basic property of Markov Chains i.e irreducibility.
+
+\section{K-State Markov Chains and Approximations}
+\begin{theorem}
+We saw in class that if $Y(t)$ is a Discrete Time Markov Chain, and 
+\[U(t) = (Y(t), Y(t-1), Y(t-2) \ldots Y(t-k))\]
+where $U$ is equicardinal with $Y$, then we have that $Y(t)$ is a $k-$state Markov Chain if $U(t)$ is a DTMC. Any stationary (and ergodic) process can be approximated to be $K-$Markov for a sufficiently large $K$.
+\end{theorem}
+We will not go into the proof as that is beyond the scope of this course.
+
+\section{n-Step Transition Probability}
+\begin{theorem}
+The n-step transition probability for a Markov chain is 
+\[Pr_{i,j}^{(n)} = Pr(X_{k+n} = j | X_k = i)\]
+given by $P^n$, if the single state transition matrix is $P$.
+\end{theorem}
+Let us start by deriving the two-state transition probability, and then we can extend the same to $n-$state by induction.
+To derive the two-step transition probability from state i to state j in a Markov chain, we start with the definition of the one-step transition probability.
+
+Let $P_{i,j}$ represent the one-step transition probability from state $i$ to state $j$. This probability represents the probability of transitioning from state i to state j in a single step.
+
+Now, to calculate the two-step transition probability, we need to consider all possible intermediate states k. We can express the two-step transition probability from state i to state j as the sum of probabilities of transitioning from state i to each possible intermediate state k and then from state k to state j:
+
+\[P^2_{i,j} = \Sigma_k P_{i,k} * P_{k,j}\]
+
+Here, the sum is taken over all possible intermediate states k, note that this product is equal to the $ij^{th}$ element of the matrix product $P*P = P^2$.
+
+In other words, to reach state j from state i in exactly two steps, we consider all possible intermediate states and calculate the probability of transitioning from i to each intermediate state k ($P_{i,k}$) multiplied by the probability of transitioning from k to j ($P_{k,j}$).
+
+This derivation shows that the two-step transition probability from state i to state j, denoted as $P^2_{i,j}$, is obtained by summing over the probabilities of transitioning from i to each intermediate state k and then from k to j.
+
+Note that this derivation assumes the Markov chain is time-homogeneous, meaning that the transition probabilities do not change over time. It also assumes that the Markov chain is memoryless, where the future behavior only depends on the current state and not the past history of states.
+
+On the same lines, we can state the following:
+
+\begin{theorem}
+If at time $t=0$, the probability distribution over the state space of the Markov Chain is $\mu(0)$, then at time $t=t$, the probability distribution of the state the Markov Chain would be is given by $\mu(t)$:
+\[\mu(t) = \mu(0) * P^n\] where $P$ is the single state transition matrix.
+
+\end{theorem}
+
+\section{Irreducibility}
+An irreducible Markov chain is a type of Markov chain where it is possible to reach any state from any other state, either in a single step or through a series of steps. In other words, there are no subsets of states within the Markov chain that are isolated from the rest.
+
+Formally, a Markov chain is said to be irreducible if for every pair of states i and j, there exists a positive integer n such that the n-step transition probability $P^n_{i,j}$ is greater than zero. This means that there is a non-zero probability of transitioning from state i to state j in a finite number of steps.
+
+\[i.e \; \; \; P^n_{i,j} > 0 \;\;\; \forall i,j \]
+
+More informally, a Markov chain is known as irreducible if there exists a chain of steps between any two states that has positive probability.
+
+
+\end{document}
+

@@ -1,0 +1,68 @@
+%%%Modified from the lecture notes style of Alexander Sherstov, UCLA.
+
+\newtheoremstyle{myplain}      {11pt}{11pt}{\itshape}{}{\scshape\color{MidnightBlue}}{.}{.5em}{}
+\newtheoremstyle{mydefinition} {11pt}{11pt}{\itshape}{}{\scshape\color{Maroon}}{.}{.5em}{}
+\newtheoremstyle{myex}		   {11pt}{11pt}{}{}{\scshape\color{OliveGreen}}{.}{.5em}{}	
+
+\newcounter{lecture}
+\theoremstyle{myplain}
+\newtheorem{theorem}{Theorem}[lecture]
+\newtheorem{lemma}         [theorem]{Lemma}
+\newtheorem{proposition}   [theorem]{Proposition}
+\newtheorem{corollary}     [theorem]{Corollary}
+\newtheorem{claim}         [theorem]{Claim}
+\newtheorem{fact}          [theorem]{Fact}
+\newtheorem{definition}    [theorem]{Definition}
+\newtheorem{example}       [theorem]{Example}
+\newtheorem{assumption}    [theorem]{Assumption}
+
+
+\theoremstyle{mydefinition}
+\newtheorem{openproblem}   [theorem]{Open Problem}
+\newtheorem{problem}       [theorem]{Problem}
+\newtheorem{remark}        [theorem]{Remark}
+\newtheorem{conjecture}    [theorem]{Conjecture}
+
+\theoremstyle{myex}
+\newtheorem{exercise}{Exercise}[lecture]
+
+
+\numberwithin{equation} {lecture}
+\numberwithin{figure}   {lecture}
+\numberwithin{table}    {lecture}
+
+\renewcommand{\fnum@figure}{\textsc{Figure~\thefigure}}
+\renewcommand{\fnum@table}{\textsc{Table~\thetable}}
+
+\renewcommand{\thesection}{\thelecture.\arabic{section}}
+\renewcommand{\thepage}{\thelecture-\arabic{page}}
+
+
+\newcommand{\makeheader}[4]{
+\setcounter{lecture}{#3}
+\noindent
+\parbox{8cm}{
+	\textbf{EE5150 \textsc{Communication Networks}}\\
+	\rule{0mm}{6mm}%
+	{\itshape Instructor:} Avhishek Chatterjee\\
+	{\itshape Scribe:}	#1\\
+	{\itshape Date:}     #2
+}
+\hfill
+\begin{tabular}{c@{}}
+{\Large \bfseries \textsc{Lecture}}\\
+\rule{0mm}{10mm}\scalebox{5}{\textbf\thelecture}
+\end{tabular}
+
+\vspace{3mm}
+\hrule height 2pt
+\vspace{2mm}
+\begin{center}
+{\LARGE \bfseries #4}
+\end{center}
+\vspace{2mm}
+\hrule height 2pt
+\vspace{5mm}
+\thispagestyle{empty}
+}
+
